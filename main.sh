@@ -5,14 +5,13 @@
 # 13/06/2022
 #
 
-print() {
-	printf "\033[%sm%-11s\033[0m%s\n" "$1" "$2" "$3"
-}
+# Kolor: '\033[38;5;kolor' https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
 
-
-read -r type <  /proc/sys/kernel/ostype
-read -r kernel < /proc/sys/kernel/osrelease
-read -r board < /sys/class/dmi/id/board_name
-read -r sys < /sys/class/dmi/id/sys_vendor
-
-print '1;34' kern: "$type $kernel"
+echo -e ""
+echo -e "       \033[38;5;166mme: \033[0m $(whoami)@$HOSTNAME"
+echo -e "       \033[38;5;166mos: \033[0m $(sed -n 's/^PRETTY_NAME="//p' /etc/os-release | cut -f1 -d'"')"
+echo -e "     \033[38;5;166mkern: \033[0m $(uname -r)"
+echo -e "       \033[38;5;166msh: \033[0m $SHELL"
+echo -e "       \033[38;5;166mde: \033[0m $XDG_CURRENT_DESKTOP"
+echo -e "       \033[38;5;166mup: \033[0m $(uptime -p | sed "s/up //")"
+echo -e ""
